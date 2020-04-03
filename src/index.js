@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React, {Component} from "react";
+import ReactDOM from "react-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import Header from "./component/header";
+import JSON from "./db.json"
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+//JSX
+
+class App extends Component {
+
+    constructor(){
+        super()
+        
+        this.state={
+            news: JSON
+        }
+    }
+
+    render(){
+        console.log(">>>>", this.state.news)
+        return(
+            <React.Fragment>
+                <Header />
+            <h1>Welcome to React</h1>
+            <h3>This is react class</h3>
+            </React.Fragment>
+        )
+    }
+}
+
+ReactDOM.render(<App/>, document.getElementById("root"));
