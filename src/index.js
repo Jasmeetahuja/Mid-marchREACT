@@ -2,7 +2,8 @@ import React, {Component} from "react";
 import ReactDOM from "react-dom";
 
 import Header from "./component/header";
-import JSON from "./db.json"
+import JSON from "./db.json";
+import NewsList from "./component/news_list"
 
 //JSX
 
@@ -12,17 +13,25 @@ class App extends Component {
         super()
         
         this.state={
-            news: JSON
+            news: JSON,
+            filtered: JSON
         }
+    }
+
+    filterNews(keyword) {
+        let output = this.state.news.filter((item) => {
+            return item.title.toLowerCase().indexOf(keyword.toLowerCase()) > -1
+        })
+
+        this.setState({filtered : output})
     }
 
     render(){
         console.log(">>>>", this.state.news)
         return(
             <React.Fragment>
-                <Header />
-            <h1>Welcome to React</h1>
-            <h3>This is react class</h3>
+                <Header  userInput={(uinput) => this.filterNews(uinput)}/>
+                <NewsList newsdata={this.state.filtered} />
             </React.Fragment>
         )
     }
