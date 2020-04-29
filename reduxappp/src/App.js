@@ -1,11 +1,26 @@
-import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import * as actions from './action';
 
-function App() {
-  return (
-    <div>Redux</div>
-  );
+class App extends Component {
+
+  componentDidMount() {
+    this.props.moviesList();
+  }
+
+
+  render() {
+    return(
+      <div>App</div>
+    )
+  }
 }
 
-export default App;
+function mapStateToProps(state) {
+  console.log(state)
+  return{
+    mydata: state.movies
+  }
+}
+
+export default connect(mapStateToProps,actions)(App);
